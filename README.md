@@ -59,11 +59,10 @@ npx hint .
 ✨ Future Enhancements
 
 [ ] Draw a random tarot card (with descriptions)
+[ ] Use real moon phases via API.
+[ ] Stylized UI with animations and card flips.
 
-[ ] Use real moon phases via API
-
-[ ] Stylized UI with animations and card flips
-
+---
 ---
 
 ## 👤 Author
