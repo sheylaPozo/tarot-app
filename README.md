@@ -8,8 +8,7 @@
 ---
 
 ## 💌 Live Demo
-**[🌙 View Live on Netlify](https://your-netlify-link.netlify.app/)**  
-(*replace the URL above once deployed!*)
+**[🌙 View Live on Netlify](https://tarotappshey.netlify.app/)**  
 
 ---
 
