@@ -21,7 +21,6 @@
 
 ---
 ---
-
 ## 💛 Preview Images 💛
 
 <div align="center">
@@ -33,9 +32,21 @@
     <td align="center"><strong>Mobile Version 2</strong></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/f84fc095-f265-4f27-abe3-d4b7937fa326" width="250"/></td>
-    <td><img src="https://github.com/user-attachments/assets/9e28f7f8-f334-4414-a986-f698a73d049c" width="150"/></td>
-    <td><img src="https://github.com/user-attachments/assets/7316b69a-fcd1-48ac-b949-454121e3ab15" width="150"/></td>
+    <td>
+      <a href="https://tarotappshey.netlify.app/" title="Click to view live demo">
+        <img src="https://github.com/user-attachments/assets/f84fc095-f265-4f27-abe3-d4b7937fa326" width="220" style="transition: transform 0.3s;" />
+      </a>
+    </td>
+    <td>
+      <a href="https://tarotappshey.netlify.app/" title="Click to view live demo">
+        <img src="https://github.com/user-attachments/assets/9e28f7f8-f334-4414-a986-f698a73d049c" width="130" />
+      </a>
+    </td>
+    <td>
+      <a href="https://tarotappshey.netlify.app/" title="Click to view live demo">
+        <img src="https://github.com/user-attachments/assets/7316b69a-fcd1-48ac-b949-454121e3ab15" width="130" />
+      </a>
+    </td>
   </tr>
 </table>
 
