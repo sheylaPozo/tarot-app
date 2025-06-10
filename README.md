@@ -21,15 +21,12 @@
 
 ---
 ---
+## 💛 Preview Images 💛
 
-*💛 Preview image💛*
+| Desktop Version | Mobile Version |
+|------------------|------------------|
+| ![DesktopImage](https://github.com/user-attachments/assets/f84fc095-f265-4f27-abe3-d4b7937fa326) | ![MobileImage1](https://github.com/user-attachments/assets/9e28f7f8-f334-4414-a986-f698a73d049c)<br>![MobileImage2](https://github.com/user-attachments/assets/7316b69a-fcd1-48ac-b949-454121e3ab15) |
 
-Desktop version | Mobile version
--------------------- | ----------------------| ----------------------
-![DesktopImage](https://github.com/user-attachments/assets/f84fc095-f265-4f27-abe3-d4b7937fa326)![mobileImage](https://github.com/user-attachments/assets/9e28f7f8-f334-4414-a986-f698a73d049c)
-![mobileImage](https://github.com/user-attachments/assets/7316b69a-fcd1-48ac-b949-454121e3ab15)
-
----
 ## 🧙🏽‍♀️ Features
 
 - Responds to selected **moon phases** with unique messages
