@@ -45,8 +45,9 @@
 git clone https://github.com/sheylaPozo/tarot-app.git
 cd tarot-app
 ```
+---
 
-###👤 Author
+## 👤 Author
 Sheyla Pozo 💖
 
 GitHub: @sheylaPozo
@@ -55,13 +56,13 @@ Twitter: @sheyPozo
 
 LinkedIn: Sheyla Pozo
 
-🤝 Contributing
+## 🤝 Contributing
 Feedback, ideas, and spells are welcome!
 Please open an issue or fork the repo 💗
 
-⭐️ Show Your Support
+## ⭐️ Show Your Support
 If you like this app, drop a star on GitHub or share it with a magical friend ✨
 
-📝 License
+## 📝 License
 This project is MIT licensed.
 
