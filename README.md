@@ -53,7 +53,6 @@ Basic static app. To add linter or testing:
 ```
 npm install
 npx hint .
-
 ```
 ---
 
@@ -64,6 +63,7 @@ npx hint .
 [ ] Use real moon phases via API
 
 [ ] Stylized UI with animations and card flips
+
 ---
 
 ## 👤 Author
