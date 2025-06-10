@@ -47,10 +47,10 @@ cd tarot-app
 ---
 ---
 
-```🧪 Testing
+🧪 Testing
 
 Basic static app. To add linter or testing:
-
+```
 npm install
 npx hint .
 
