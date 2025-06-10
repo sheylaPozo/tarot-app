@@ -45,6 +45,26 @@ git clone https://github.com/sheylaPozo/tarot-app.git
 cd tarot-app
 ```
 ---
+---
+
+🧪 Testing
+
+Basic static app. To add linter or testing:
+
+npm install
+npx hint .
+
+
+---
+
+✨ Future Enhancements
+
+[ ] Draw a random tarot card (with descriptions)
+
+[ ] Use real moon phases via API
+
+[ ] Stylized UI with animations and card flips
+---
 
 ## 👤 Author
 Sheyla Pozo 💖
