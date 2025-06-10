@@ -44,8 +44,9 @@
 ```bash
 git clone https://github.com/sheylaPozo/tarot-app.git
 cd tarot-app
+```
 
-👤 Author
+###👤 Author
 Sheyla Pozo 💖
 
 GitHub: @sheylaPozo
