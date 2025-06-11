@@ -219,3 +219,37 @@ document.getElementById("bgToggleBtn").addEventListener("click", () => {
 
   // Puedes guardar el estado si deseas usar localStorage más adelante
 });
+
+function getSpreadPositions(type) {
+  switch (type) {
+    case 'mindBodySpirit':
+      return ['Mente', 'Cuerpo', 'Espíritu'];
+    case 'loveWorkAdvice':
+      return ['Amor', 'Trabajo', 'Consejo'];
+    case 'pastPresentFuture':
+      return ['Pasado', 'Presente', 'Futuro'];
+    default:
+      return ['Carta 1', 'Carta 2', 'Carta 3'];
+  }
+}
+
+cards.forEach((card, i) => {
+  card.style.setProperty('--delay', `${i * 0.5}s`);
+});
+
+const reading = {
+  spreadType: selectedSpread,
+  cards: [card1, card2, card3], // o como sea tu estructura de cartas
+  date: new Date().toISOString(),
+};
+
+localStorage.setItem("lastReading", JSON.stringify(reading));
+
+window.addEventListener("DOMContentLoaded", () => {
+  const last = localStorage.getItem("lastReading");
+  if (last) {
+    const reading = JSON.parse(last);
+    // Puedes reconstruir la tirada aquí si quieres mostrarla
+    console.log("Última lectura guardada:", reading);
+  }
+});

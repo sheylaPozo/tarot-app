@@ -29,6 +29,13 @@
     <section class="tarot-section">
       <button onclick="drawCard()">Draw a Card 🔮</button>
       <div id="cardResult"></div>
+      <label for="spreadType">Selecciona tu tirada:</label>
+    <select id="spreadType">
+     <option value="mindBodySpirit">Mente – Cuerpo – Espíritu</option>
+     <option value="loveWorkAdvice">Amor – Trabajo – Consejo</option>
+     <option value="pastPresentFuture">Pasado – Presente – Futuro</option>
+    </select>
+
       <button onclick="drawThreeCardReading()">🔮 3-Card Spread</button>
       <div class="three-card-reading" id="threeCardContainer"></div>
       <!-- Tarot Card Flip Display -->
