@@ -8,23 +8,48 @@ body {
   justify-content: center;
   height: 100vh;
   text-align: center;
+  margin: 0;
 }
+
 .card {
   background: white;
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-select, button {
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(75, 0, 110, 0.2);
+}
+
+select,
+button {
   margin-top: 20px;
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 1rem;
   border-radius: 10px;
   border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #ffe4f5;
+  color: #4b006e;
+  transition: background-color 0.3s;
 }
+
+button:hover {
+  background-color: #fdd6eb;
+}
+
 #message {
   margin-top: 20px;
   font-size: 1.2rem;
   color: #800080;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
