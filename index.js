@@ -120,8 +120,8 @@ function drawCard() {
   container.onclick = () => container.classList.toggle("flipped");
 }
 
-// 🌕 Fetch current moon phase
-async function fetchMoonPhase() {
+// 🌕 Fetch current moon phase on demand
+async function detectMoonPhase() {
   const apiKey = '72847c6823ed44888d7b379b5797fcac';
   const url = `https://api.ipgeolocation.io/astronomy?apiKey=${apiKey}`;
 
@@ -136,10 +136,17 @@ async function fetchMoonPhase() {
     else if (raw.includes('waning')) phase = 'waning';
     else if (raw.includes('waxing')) phase = 'waxing';
 
-    document.getElementById('moonPhase').value = phase;
-    moonPhaseReading();
+    if (phase) {
+      document.getElementById('moonPhase').value = phase;
+      moonPhaseReading();  // Mostrar el mensaje
+    } else {
+      document.getElementById('moonMessage').textContent =
+        "⚠️ Moon phase not detected. Please choose manually.";
+    }
   } catch (err) {
     console.error('🪐 Failed to fetch moon phase:', err);
+    document.getElementById('moonMessage').textContent =
+      "🚫 Could not connect to moon phase service.";
   }
 }
 
