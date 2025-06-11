@@ -7,15 +7,16 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  text-align: center;
+  color: #4b006e;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 60px;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #1a0025, #32073f);
-  color: #fceaff;
+  text-align: center;
+  margin: 0;
+  background: linear-gradient(to bottom, #fceaff, #ffe4f5);
   transition: background 0.4s ease, color 0.4s ease;
 }
 
@@ -33,7 +34,7 @@ body.light-mode {
   max-width: 420px;
   box-shadow: 0 0 25px rgba(198, 106, 255, 0.15);
   backdrop-filter: blur(8px);
-  transition: all 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Hover Effect for Cards */
@@ -53,18 +54,18 @@ body.light-mode .flip-card-back {
 /* Controls Styling */
 select, button {
   margin-top: 20px;
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 1rem;
-  border-radius: 12px;
-  border: none;
-  background: #4b006e;
-  color: #fceaff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   cursor: pointer;
-  transition: all 0.3s ease;
+  background-color: #ffe4f5;
+  color: #4b006e;
+  transition: background-color 0.3s;
 }
 
-select:hover, button:hover {
-  background: #790a97;
+button:hover {
+  background-color: #fdd6eb;
 }
 
 /* Message Display */
