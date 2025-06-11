@@ -120,18 +120,26 @@ function drawCard() {
   // Save to localStorage
   localStorage.setItem('lastCard', JSON.stringify(card));
 
-  // Show in the page
+  // Show with flip effect
   const result = document.getElementById("cardResult");
-  result.textContent = `🃏 ${card.name}: ${card.message}`;
+  const container = document.getElementById("cardContainer");
+
+  result.innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
+  container.classList.add("flipped");
+
+  // Reset flip on click
+  container.addEventListener('click', () => {
+    container.classList.toggle("flipped");
+  });
 }
 
-// Optional: Load last card on page load
+// Restore last card on load
 window.addEventListener('load', () => {
-  const savedCard = localStorage.getItem('lastCard');
-  if (savedCard) {
-    const card = JSON.parse(savedCard);
+  const lastCard = JSON.parse(localStorage.getItem('lastCard'));
+  if (lastCard) {
     const result = document.getElementById("cardResult");
-    result.textContent = `🔁 Previous Draw: ${card.name} — ${card.message}`;
+    result.innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
+    document.getElementById("cardContainer").classList.add("flipped");
   }
 });
 
@@ -160,3 +168,15 @@ async function fetchMoonPhase() {
 
 // 🚀 Trigger moon phase fetch on page load
 window.addEventListener('load', fetchMoonPhase);
+document.getElementById("toggleMode").addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+});
+
+// Load saved mode
+window.addEventListener('load', () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+  }
+});
