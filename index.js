@@ -202,6 +202,8 @@ window.addEventListener('load', () => {
   fetchMoonPhase();
 });
 
+document.getElementById("cardBackResult").innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
+
 // 🌓 Toggle theme
 document.getElementById("toggleMode").addEventListener("click", () => {
   document.body.classList.toggle("light-mode");

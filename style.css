@@ -83,12 +83,16 @@ select:hover, button:hover {
 
 /* Message Display */
 .moon-message {
+  font-size: 1.2rem;
+  margin-top: 20px;
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity 1s ease-in, transform 0.8s ease;
+  transform: translateY(15px);
 }
 
 .moon-message.revealed {
   opacity: 1;
+  transform: translateY(0);
 }
 
 #message, #cardResult {
@@ -97,7 +101,6 @@ select:hover, button:hover {
   animation: fadeIn 1s ease forwards;
 }
 
-/* Tarot Card Display */
 #cardResult {
   background: rgba(255, 255, 255, 0.08);
   padding: 20px;
@@ -114,6 +117,23 @@ select:hover, button:hover {
   transform: translateY(0);
 }
 
+#cardBackResult{
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+#cardBackResult.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tarot Card Display */
 .three-card-reading {
   display: flex;
   gap: 20px;
