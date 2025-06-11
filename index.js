@@ -122,18 +122,15 @@ function drawCard() {
 
 // 🎴 Draw 3-card spread
 function drawThreeCardReading() {
+  const shuffled = tarotCards.sort(() => 0.5 - Math.random());
+  const spread = shuffled.slice(0, 3); // Unique 3 cards
   const type = document.getElementById("spreadType").value;
+
   const positions = {
     mindBodySpirit: ["Mind","Body","Spirit"],
     loveWorkAdvice: ["Love","Work","Advice"],
     pastPresentFuture: ["Past","Present","Future"]
   }[type] || ["Card 1","Card 2","Card 3"];
-  
-function drawThreeCardReading() {
-  const shuffled = tarotCards.sort(() => 0.5 - Math.random());
-  const spread = shuffled.slice(0, 3); // Unique 3 cards
-
-  const positions = ["Past", "Present", "Future"];
   const container = document.getElementById("threeCardContainer");
   container.innerHTML = ""; // Clear previous
 
