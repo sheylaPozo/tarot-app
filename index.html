@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon Phase Tarot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>🌙 Moon Phase Tarot Reading</h1>
+    <p>Pick your current moon phase and receive a channeled message ✨</p>
+
+    <select id="moonPhase">
+      <option value="">-- Select a phase --</option>
+      <option value="new">New 🌑</option>
+      <option value="full">Full 🌕</option>
+      <option value="waning">Waning 🌘</option>
+      <option value="waxing">Waxing 🌒</option>
+    </select>
+
+    <button onclick="moonPhaseReading()">Reveal Message</button>
+
+    <div id="message"></div>
+  </div>
+
+    <button onclick="drawCard()">Draw a Tarot Card</button>
+    <div id="cardResult"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
