@@ -1,3 +1,4 @@
+
 /* Reset and Base */
 * {
   margin: 0;
@@ -15,22 +16,8 @@ body {
   padding-top: 60px;
   min-height: 100vh;
   background: linear-gradient(to bottom, #1a0025, #32073f);
-  background-image: url("/assets/bg.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   color: #fceaff;
   transition: background 0.4s ease, color 0.4s ease;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: -1;
 }
 
 /* Light Mode Styling */
@@ -40,6 +27,33 @@ body.light-mode {
 }
 
 /* Shared Card Styles */
+
+/* Tarot Card Display */
+.three-card-reading {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.three-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.three-card-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffc6ff;
+}
+
+body.light-mode .three-card-title {
+  color: #4b006e;
+}
+
 .card, .flip-card-front, .flip-card-back {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -82,15 +96,6 @@ select:hover, button:hover {
 }
 
 /* Message Display */
-.moon-message {
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-
-.moon-message.revealed {
-  opacity: 1;
-}
-
 #message, #cardResult {
   margin-top: 25px;
   font-size: 1.2rem;
@@ -114,29 +119,13 @@ select:hover, button:hover {
   transform: translateY(0);
 }
 
-.three-card-reading {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
+.moon-message {
+  opacity: 0;
+  transition: opacity 1s ease-in;
 }
 
-.three-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.three-card-title {
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #ffc6ff;
-}
-
-body.light-mode .three-card-title {
-  color: #4b006e;
+.moon-message.revealed {
+  opacity: 1;
 }
 
 /* Flip Card Styles */
@@ -215,3 +204,35 @@ body.light-mode .flip-card-back {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* body {
+  background-image: url("/assets/bg.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+  body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: -1;
+}
+/* 
+🔮 Sheyla's Background Custom Area:
+Aquí puedes cambiar el fondo como quieras, por ejemplo:
+
+body.bg-on {
+  background: url('tu-imagen.gif') no-repeat center center fixed;
+  background-size: cover;
+}
+
+O con filtros mágicos:
+
+body.bg-on {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('luna.gif');
+  background-size: cover;
+}
+*/

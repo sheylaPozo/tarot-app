@@ -6,7 +6,7 @@
   <title>Moon Phase Tarot Reading</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg-off">
   <div class="container">
     <header>
       <h1>🌙 Moon Phase Tarot Reading</h1>
@@ -20,7 +20,7 @@
       </select>
       <!-- new button for api -->
       <button onclick="detectMoonPhase()">🪐 Auto Detect Moon Phase</button>
-
+  
       <p id="moonMessage" class="moon-message"></p>
       <button onclick="moonPhaseReading()">Reveal Message</button>
       <div id="message"></div>
@@ -37,15 +37,16 @@
           <div class="flip-card-front">
             🔮 Tap to reveal your card...
           </div>
-          <div class="flip-card-back" id="cardResult">
-          <!-- JS will populate this -->
-          </div>
+          <div class="flip-card-back" id="cardBackResult">
+           <!-- JS will populate this -->
+          </div>        
         </div>
       </div>
     </section>
 
     <footer>
       <button id="toggleMode">🌓 Toggle Light/Dark Mode</button>
+      <button id="bgToggleBtn" class="bg-toggle">🌓 Toggle Background</button>
     </footer>
   </div>
 
