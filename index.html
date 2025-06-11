@@ -9,36 +9,36 @@
 <body>
   <div class="container">
     <header>
-      <h1>🌙 Moon Phase Tarot Reading</h1>
-      <p>Pick your current moon phase and receive a channeled message ✨</p>
-      <select id="moonPhase">
-        <option value="">-- Select a phase --</option>
-        <option value="new">New 🌑</option>
-        <option value="full">Full 🌕</option>
-        <option value="waning">Waning 🌘</option>
-        <option value="waxing">Waxing 🌒</option>
-      </select>
-      <button onclick="moonPhaseReading()">Reveal Message</button>
-      <div id="message"></div>
-    </header>
+  <h1>🌙 Moon Phase Tarot Reading</h1>
+  <p>Pick your current moon phase and receive a channeled message ✨</p>
+  <select id="moonPhase">
+    <option value="">-- Select a phase --</option>
+    <option value="new">New 🌑</option>
+    <option value="full">Full 🌕</option>
+    <option value="waning">Waning 🌘</option>
+    <option value="waxing">Waxing 🌒</option>
+  </select>
+  <p id="message" class="moon-message"></p>
+  <button onclick="moonPhaseReading()">Reveal Message</button>
+</header>
 
-    <section class="tarot-section">
-      <button onclick="drawCard()">Draw a Card 🔮</button>
-      <div id="cardResult"></div>
-      <!-- Tarot Card Flip Display -->
-      <div class="flip-card" id="cardContainer">
-        <div class="flip-card-inner" id="cardInner">
-          <div class="flip-card-front">
-            🔮 Tap to reveal your card...
-          </div>
-          <div class="flip-card-back" id="cardResult">
-            <!-- JS will populate this -->
-          </div>
-        </div>
+<section class="tarot-section">
+  <button onclick="drawCard()">Draw a Card 🔮</button>
+
+  <!-- Tarot Card Flip Display -->
+  <div class="flip-card" id="cardContainer">
+    <div class="flip-card-inner" id="cardInner">
+      <div class="flip-card-front">
+        🔮 Tap to reveal your card...
       </div>
-    </section>
+      <div class="flip-card-back" id="cardResult">
+        <!-- JS will populate this -->
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
+<footer>
       <button id="toggleMode">🌓 Toggle Light/Dark Mode</button>
     </footer>
   </div>
