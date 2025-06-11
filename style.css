@@ -209,3 +209,55 @@ body.light-mode .flip-card-back {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+.bg-toggle {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.bg-toggle:hover {
+  background: #666;
+}
+
+/* Fondo visual animado o imagen */
+body.bg-on {
+  background: linear-gradient(135deg, #1b2735 0%, #090a0f 100%);
+  background-size: 400% 400%;
+  animation: bgFlow 20s ease infinite;
+  color: #f0f0f0;
+}
+
+/* Fondo apagado o fondo base */
+body.bg-off {
+  background-color: #ffffff;
+  color: #111;
+}
+
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 
+🔮 Sheyla's Background Custom Area:
+Aquí puedes cambiar el fondo como quieras, por ejemplo:
+
+body.bg-on {
+  background: url('tu-imagen.gif') no-repeat center center fixed;
+  background-size: cover;
+}
+
+O con filtros mágicos:
+
+body.bg-on {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('luna.gif');
+  background-size: cover;
+}
+*/

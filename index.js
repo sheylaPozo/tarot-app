@@ -210,3 +210,12 @@ document.getElementById("toggleMode").addEventListener("click", () => {
   const theme = document.body.classList.contains("light-mode") ? "light" : "dark";
   localStorage.setItem("theme", theme);
 });
+
+// Fondo ON/OFF al hacer toggle
+document.getElementById("bgToggleBtn").addEventListener("click", () => {
+  const body = document.body;
+  body.classList.toggle("bg-on");
+  body.classList.toggle("bg-off");
+
+  // Puedes guardar el estado si deseas usar localStorage más adelante
+});
