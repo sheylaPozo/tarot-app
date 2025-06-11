@@ -120,6 +120,40 @@ function drawCard() {
   container.onclick = () => container.classList.toggle("flipped");
 }
 
+function drawThreeCardReading() {
+  const shuffled = tarotCards.sort(() => 0.5 - Math.random());
+  const spread = shuffled.slice(0, 3); // Unique 3 cards
+
+  const positions = ["Past", "Present", "Future"];
+  const container = document.getElementById("threeCardContainer");
+  container.innerHTML = ""; // Clear previous
+
+  spread.forEach((card, index) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("three-card");
+
+    cardDiv.innerHTML = `
+      <div class="three-card-title">${positions[index]}</div>
+      <div class="flip-card">
+        <div class="flip-card-inner flipped">
+          <div class="flip-card-front">🔮 Tap to reveal...</div>
+          <div class="flip-card-back">
+            <strong>${card.name}</strong><br>
+            ${card.message}
+          </div>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(cardDiv);
+
+    const flipCard = cardDiv.querySelector(".flip-card");
+    flipCard.onclick = () => {
+      flipCard.classList.toggle("flipped");
+    };
+  });
+}
+
 // 🌕 Fetch current moon phase on demand
 async function detectMoonPhase() {
   const apiKey = '72847c6823ed44888d7b379b5797fcac';
