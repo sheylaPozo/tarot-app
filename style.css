@@ -15,22 +15,8 @@ body {
   padding-top: 60px;
   min-height: 100vh;
   background: linear-gradient(to bottom, #1a0025, #32073f);
-  background-image: url("/assets/bg.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   color: #fceaff;
   transition: background 0.4s ease, color 0.4s ease;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: -1;
 }
 
 /* Light Mode Styling */
@@ -82,25 +68,13 @@ select:hover, button:hover {
 }
 
 /* Message Display */
-.moon-message {
-  font-size: 1.2rem;
-  margin-top: 20px;
-  opacity: 0;
-  transition: opacity 1s ease-in, transform 0.8s ease;
-  transform: translateY(15px);
-}
-
-.moon-message.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 #message, #cardResult {
   margin-top: 25px;
   font-size: 1.2rem;
   animation: fadeIn 1s ease forwards;
 }
 
+/* Tarot Card Display */
 #cardResult {
   background: rgba(255, 255, 255, 0.08);
   padding: 20px;
