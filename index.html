@@ -1,32 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moon Phase Tarot</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
-  <div class="card">
-    <h1>🌙 Moon Phase Tarot Reading</h1>
-    <p>Pick your current moon phase and receive a channeled message ✨</p>
+  <div class="container">
+    <header>
+      <h1>🌙 Moon Phase Tarot Reading</h1>
+      <p>Pick your current moon phase and receive a channeled message ✨</p>
+      <select id="moonPhase">
+        <option value="">-- Select a phase --</option>
+        <option value="new">New 🌑</option>
+        <option value="full">Full 🌕</option>
+        <option value="waning">Waning 🌘</option>
+        <option value="waxing">Waxing 🌒</option>
+      </select>
+      <button onclick="moonPhaseReading()">Reveal Message</button>
+      <div id="message"></div>
+    </header>
 
-    <select id="moonPhase">
-      <option value="">-- Select a phase --</option>
-      <option value="new">New 🌑</option>
-      <option value="full">Full 🌕</option>
-      <option value="waning">Waning 🌘</option>
-      <option value="waxing">Waxing 🌒</option>
-    </select>
+    <section class="tarot-section">
+      <button onclick="drawCard()">Draw a Card 🔮</button>
 
-    <button onclick="moonPhaseReading()">Reveal Message</button>
+      <!-- Tarot Card Flip Display -->
+      <div class="flip-card" id="cardContainer">
+        <div class="flip-card-inner" id="cardInner">
+          <div class="flip-card-front">
+            🔮 Tap to reveal your card...
+          </div>
+          <div class="flip-card-back" id="cardResult">
+            <!-- JS will populate this -->
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div id="message"></div>
+    <footer>
+      <button id="toggleMode">🌓 Toggle Light/Dark Mode</button>
+    </footer>
   </div>
-
-    <button onclick="drawCard()">Draw a Tarot Card</button>
-    <div id="cardResult"></div>
 
   <script src="index.js"></script>
 </body>
-</html>
