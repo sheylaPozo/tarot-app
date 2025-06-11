@@ -15,8 +15,22 @@ body {
   padding-top: 60px;
   min-height: 100vh;
   background: linear-gradient(to bottom, #1a0025, #32073f);
+  background-image: url("/assets/bg.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   color: #fceaff;
   transition: background 0.4s ease, color 0.4s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: -1;
 }
 
 /* Light Mode Styling */
