@@ -195,6 +195,7 @@ window.addEventListener('load', () => {
   const lastCard = JSON.parse(localStorage.getItem('lastCard'));
   if (lastCard) {
     document.getElementById("cardResult").innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
+    document.getElementById("cardBackResult").innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
     document.getElementById("cardContainer").classList.add("flipped");
   }
 
