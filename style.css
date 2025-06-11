@@ -17,20 +17,6 @@ body {
   background: linear-gradient(to bottom, #1a0025, #32073f);
   color: #fceaff;
   transition: background 0.4s ease, color 0.4s ease;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-body.bg-on.dark {
-  background-image: url('assets/bg2.gif');
-}
-body.bg-on.light-mode {
-  background-image: url('assets/bg1.gif');
-}
-body.bg-off {
-  background-image: none;
 }
 
 /* Light Mode Styling */
@@ -39,7 +25,7 @@ body.light-mode {
   color: #32073f;
 }
 
-/* Card Styles */
+/* Shared Card Styles */
 .card, .flip-card-front, .flip-card-back {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -49,10 +35,14 @@ body.light-mode {
   backdrop-filter: blur(8px);
   transition: all 0.4s ease;
 }
+
+/* Hover Effect for Cards */
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 0 30px rgba(255, 176, 255, 0.25);
 }
+
+/* Light Mode Adjustments for Cards */
 body.light-mode .card,
 body.light-mode .flip-card-front,
 body.light-mode .flip-card-back {
@@ -60,7 +50,7 @@ body.light-mode .flip-card-back {
   color: #32073f;
 }
 
-/* Buttons and Controls */
+/* Controls Styling */
 select, button {
   margin-top: 20px;
   padding: 12px 24px;
@@ -72,37 +62,77 @@ select, button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 select:hover, button:hover {
   background: #790a97;
 }
 
-/* Toggle Button */
-#toggleMode, #bgToggleBtn {
-  position: fixed;
-  top: 10px;
-  padding: 10px 16px;
-  border-radius: 20px;
-  background: #4b006e;
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 100;
-  font-size: 0.9rem;
-  transition: background 0.3s ease;
-}
-#toggleMode { right: 10px; }
-#bgToggleBtn { right: 160px; }
-#toggleMode:hover, #bgToggleBtn:hover {
-  background: #790a97;
+/* Message Display */
+.moon-message {
+  opacity: 0;
+  transition: opacity 1s ease-in;
 }
 
-/* Flip Cards */
+.moon-message.revealed {
+  opacity: 1;
+}
+
+#message, #cardResult {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Tarot Card Display */
+#cardResult {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+#cardResult.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.three-card-reading {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.three-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.three-card-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffc6ff;
+}
+
+body.light-mode .three-card-title {
+  color: #4b006e;
+}
+
+/* Flip Card Styles */
 .flip-card {
   width: 260px;
   height: 160px;
   perspective: 1000px;
   margin-top: 30px;
 }
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -110,9 +140,11 @@ select:hover, button:hover {
   transform-style: preserve-3d;
   transition: transform 0.8s;
 }
+
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
+
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
@@ -126,50 +158,46 @@ select:hover, button:hover {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
 }
-.flip-card-front { color: #ffb7e5; font-style: italic; }
+
+.flip-card-front {
+  color: #ffb7e5;
+  font-style: italic;
+}
+
 .flip-card-back {
   transform: rotateY(180deg);
   color: #fceaff;
 }
+
+/* Light Mode Flip Adjustments */
 body.light-mode .flip-card-front,
 body.light-mode .flip-card-back {
   background: rgba(255, 255, 255, 0.85);
   color: #4b006e;
 }
 
-/* 3-Card Spread Layout */
-.three-card-reading {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-.three-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.three-card-title {
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #ffc6ff;
-}
-body.light-mode .three-card-title {
-  color: #4b006e;
+/* Toggle Button */
+#toggleMode {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: #4b006e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
 }
 
-/* Fade-In Animation */
+#toggleMode:hover {
+  background: #790a97;
+}
+
+/* Fade In Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.moon-message {
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-.moon-message.revealed {
-  opacity: 1;
-}
-
