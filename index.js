@@ -1,21 +1,21 @@
-// 🌙 Moon phase reading logic
+// 🌙 Moon phase message logic
 function moonPhaseReading() {
   const phase = document.getElementById("moonPhase").value;
   const moonMessage = document.getElementById("moonMessage");
 
-  const moonMessages = {
+  const messages = {
     new: "🌑 Plant intentions for healing.",
-    full: "🌕 Release and manifest your goals and dreams.",
-    waning: "🌘 Let go of old energy and cut the cords that no longer serve you.",
-    waxing: "🌒 Grow your goals and create.",
+    full: "🌕 Release & manifest your dreams.",
+    waning: "🌘 Let go & clear old energy.",
+    waxing: "🌒 Grow your goals & create."
   };
 
-  moonMessage.textContent = moonMessages[phase] || "🧸✨ Please choose a moon phase to receive a message.";
+  moonMessage.textContent = messages[phase] || "🧸✨ Please choose a moon phase.";
+  moonMessage.classList.remove("revealed");
+  setTimeout(() => moonMessage.classList.add("revealed"), 20);
 }
-moonMessage.classList.remove("revealed");
-setTimeout(() => moonMessage.classList.add("revealed"), 50);
 
-// 🔮 Tarot card definitions
+// 🃏 Full tarot card deck (78 cards)
 const tarotCards = [
   // Major Arcana
   { name: "The Fool", message: "A new journey begins — trust the path." },
@@ -103,153 +103,103 @@ const tarotCards = [
   { name: "Page of Pentacles", message: "Time to build and learn." },
   { name: "Knight of Pentacles", message: "Steady progress wins." },
   { name: "Queen of Pentacles", message: "Nurture what you value." },
-  { name: "King of Pentacles", message: "Prosperity through leadership." },
+  { name: "King of Pentacles", message: "Prosperity through leadership." }
 ];
 
-// 🔁 Draw a tarot card
+// 🎴 Draw single card
 function drawCard() {
   const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
-  localStorage.setItem('lastCard', JSON.stringify(card));
-
   const result = document.getElementById("cardResult");
+  const back = document.getElementById("cardBackResult");
   const container = document.getElementById("cardContainer");
 
-  result.innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
+  back.innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
+  result.classList.add("show");
+  back.classList.add("show");
   container.classList.add("flipped");
 
-  container.onclick = () => container.classList.toggle("flipped");
+  localStorage.setItem("lastCard", JSON.stringify(card));
 }
 
+// 🔮 Draw 3-card spread
 function drawThreeCardReading() {
-  const shuffled = tarotCards.sort(() => 0.5 - Math.random());
-  const spread = shuffled.slice(0, 3); // Unique 3 cards
+  const type = document.getElementById("spreadType").value;
+  const positions = {
+    mindBodySpirit: ["Mind", "Body", "Spirit"],
+    loveWorkAdvice: ["Love", "Work", "Advice"],
+    pastPresentFuture: ["Past", "Present", "Future"]
+  }[type];
 
-  const positions = ["Past", "Present", "Future"];
+  const shuffled = tarotCards.sort(() => 0.5 - Math.random()).slice(0, 3);
   const container = document.getElementById("threeCardContainer");
-  container.innerHTML = ""; // Clear previous
+  container.innerHTML = "";
 
-  spread.forEach((card, index) => {
+  shuffled.forEach((card, i) => {
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("three-card");
-
+    cardDiv.className = "three-card";
     cardDiv.innerHTML = `
-      <div class="three-card-title">${positions[index]}</div>
+      <div class="three-card-title">${positions[i]}</div>
       <div class="flip-card">
-        <div class="flip-card-inner flipped">
-          <div class="flip-card-front">🔮 Tap to reveal...</div>
-          <div class="flip-card-back">
-            <strong>${card.name}</strong><br>
-            ${card.message}
-          </div>
+        <div class="flip-card-inner">
+          <div class="flip-card-front">🔮 Tap to reveal</div>
+          <div class="flip-card-back">🃏 <strong>${card.name}</strong><br>${card.message}</div>
         </div>
-      </div>
-    `;
-
+      </div>`;
     container.appendChild(cardDiv);
-
-    const flipCard = cardDiv.querySelector(".flip-card");
-    flipCard.onclick = () => {
-      flipCard.classList.toggle("flipped");
-    };
+    cardDiv.querySelector(".flip-card").onclick = () =>
+      cardDiv.querySelector(".flip-card").classList.toggle("flipped");
   });
+
+  localStorage.setItem("lastSpread", JSON.stringify({ type, spread: shuffled, date: new Date() }));
 }
 
-// 🌕 Fetch current moon phase on demand
+// 🌕 Fetch moon phase
 async function detectMoonPhase() {
-  const apiKey = '72847c6823ed44888d7b379b5797fcac';
-  const url = `https://api.ipgeolocation.io/astronomy?apiKey=${apiKey}`;
-
+  const key = '72847c6823ed44888d7b379b5797fcac';
   try {
-    const res = await fetch(url);
+    const res = await fetch(`https://api.ipgeolocation.io/astronomy?apiKey=${key}`);
     const data = await res.json();
     const raw = data.moon_phase.toLowerCase();
-
-    let phase = '';
-    if (raw.includes('new')) phase = 'new';
-    else if (raw.includes('full')) phase = 'full';
-    else if (raw.includes('waning')) phase = 'waning';
-    else if (raw.includes('waxing')) phase = 'waxing';
-
-    if (phase) {
-      document.getElementById('moonPhase').value = phase;
-      moonPhaseReading();  // Mostrar el mensaje
-    } else {
-      document.getElementById('moonMessage').textContent =
-        "⚠️ Moon phase not detected. Please choose manually.";
-    }
-  } catch (err) {
-    console.error('🪐 Failed to fetch moon phase:', err);
-    document.getElementById('moonMessage').textContent =
-      "🚫 Could not connect to moon phase service.";
+    const phase = raw.includes('new') ? 'new' :
+                  raw.includes('full') ? 'full' :
+                  raw.includes('waning') ? 'waning' :
+                  raw.includes('waxing') ? 'waxing' : '';
+    if (!phase) throw "";
+    document.getElementById("moonPhase").value = phase;
+    moonPhaseReading();
+  } catch {
+    document.getElementById("moonMessage").textContent =
+      "⚠️ Could not detect moon phase — try manual.";
   }
 }
 
-// 🧙‍♀️ Load state on page load
-window.addEventListener('load', () => {
-  // Theme
-  if (localStorage.getItem("theme") === "light") {
-    document.body.classList.add("light-mode");
-  }
+// 🌓 Toggle light/dark
+document.getElementById("toggleMode").onclick = () => {
+  document.body.classList.toggle("light-mode");
+  localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+};
 
-  // Last card
-  const lastCard = JSON.parse(localStorage.getItem('lastCard'));
-  if (lastCard) {
-    document.getElementById("cardResult").innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
+// 🌌 Toggle bg image
+document.getElementById("bgToggleBtn").onclick = () => {
+  document.body.classList.toggle("bg-on");
+  document.body.classList.toggle("bg-off");
+};
+
+// 🧙 On Load
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("theme") === 'light')
+    document.body.classList.add("light-mode");
+
+  const last = localStorage.getItem("lastCard");
+  if (last) {
+    const card = JSON.parse(last);
+    document.getElementById("cardBackResult").innerHTML =
+      `🃏 <strong>${card.name}</strong><br>${card.message}`;
     document.getElementById("cardContainer").classList.add("flipped");
   }
 
-  // Moon
-  fetchMoonPhase();
-});
-
-document.getElementById("cardBackResult").innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
-
-// 🌓 Toggle theme
-document.getElementById("toggleMode").addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  const theme = document.body.classList.contains("light-mode") ? "light" : "dark";
-  localStorage.setItem("theme", theme);
-});
-
-// Fondo ON/OFF al hacer toggle
-document.getElementById("bgToggleBtn").addEventListener("click", () => {
-  const body = document.body;
-  body.classList.toggle("bg-on");
-  body.classList.toggle("bg-off");
-
-  // Puedes guardar el estado si deseas usar localStorage más adelante
-});
-
-function getSpreadPositions(type) {
-  switch (type) {
-    case 'mindBodySpirit':
-      return ['Mind', 'Body', 'Spirit'];
-    case 'loveWorkAdvice':
-      return ['Love', 'Work', 'Advice'];
-    case 'pastPresentFuture':
-      return ['Past', 'Present', 'Future'];
-    default:
-      return ['Card 1', 'Card 2', 'Card 3'];
-  }
-}
-
-cards.forEach((card, i) => {
-  card.style.setProperty('--delay', `${i * 0.5}s`);
-});
-
-const reading = {
-  spreadType: selectedSpread,
-  cards: [card1, card2, card3], // o como sea tu estructura de cartas
-  date: new Date().toISOString(),
-};
-
-localStorage.setItem("lastReading", JSON.stringify(reading));
-
-window.addEventListener("DOMContentLoaded", () => {
-  const last = localStorage.getItem("lastReading");
-  if (last) {
-    const reading = JSON.parse(last);
-    // Puedes reconstruir la tirada aquí si quieres mostrarla
-    console.log("Last saved reading:", reading);
+  const savedSpread = localStorage.getItem("lastSpread");
+  if (savedSpread) {
+    console.log("Last spread saved:", JSON.parse(savedSpread));
   }
 });
