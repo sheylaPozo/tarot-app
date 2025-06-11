@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +29,8 @@
     <section class="tarot-section">
       <button onclick="drawCard()">Draw a Card 🔮</button>
       <div id="cardResult"></div>
+      <button onclick="drawThreeCardReading()">🔮 3-Card Spread</button>
+      <div class="three-card-reading" id="threeCardContainer"></div>
       <!-- Tarot Card Flip Display -->
       <div class="flip-card" id="cardContainer">
         <div class="flip-card-inner" id="cardInner">
@@ -37,9 +38,7 @@
             🔮 Tap to reveal your card...
           </div>
           <div class="flip-card-back" id="cardBackResult">
-            <button onclick="drawThreeCardReading()">🔮 3-Card Spread</button>
-          <div class="three-card-reading" id="threeCardContainer"></div>
-            <!-- JS will populate this -->
+          <!-- JS will populate this -->
           </div>
         </div>
       </div>
