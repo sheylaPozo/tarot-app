@@ -1,47 +1,65 @@
-/* General Reset */
+//* Reset and Base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-  background: linear-gradient(to bottom, #1a0025, #32073f);
   font-family: 'Segoe UI', sans-serif;
-  color: #fceaff;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 50px;
+  padding-top: 60px;
   min-height: 100vh;
-  text-align: center;
+  background: linear-gradient(to bottom, #1a0025, #32073f);
+  color: #fceaff;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Card Container */
-.card {
+/* Light Mode Styling */
+body.light-mode {
+  background: linear-gradient(to bottom, #fff4fc, #e7d6ff);
+  color: #32073f;
+}
+
+/* Shared Card Styles */
+.card, .flip-card-front, .flip-card-back {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 0 20px rgba(198, 106, 255, 0.2);
-  max-width: 400px;
+  max-width: 420px;
+  box-shadow: 0 0 25px rgba(198, 106, 255, 0.15);
   backdrop-filter: blur(8px);
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
 }
 
-/* Form Controls */
+/* Hover Effect for Cards */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(255, 176, 255, 0.25);
+}
+
+/* Light Mode Adjustments for Cards */
+body.light-mode .card,
+body.light-mode .flip-card-front,
+body.light-mode .flip-card-back {
+  background: rgba(255, 255, 255, 0.85);
+  color: #32073f;
+}
+
+/* Controls Styling */
 select, button {
   margin-top: 20px;
-  padding: 12px 20px;
+  padding: 12px 24px;
   font-size: 1rem;
   border-radius: 12px;
   border: none;
-  outline: none;
-  cursor: pointer;
   background: #4b006e;
   color: #fceaff;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
@@ -49,42 +67,34 @@ select:hover, button:hover {
   background: #790a97;
 }
 
-/* Message + Card */
+/* Message Display */
 #message, #cardResult {
   margin-top: 25px;
   font-size: 1.2rem;
-  color: #ffe4f5;
   animation: fadeIn 1s ease forwards;
 }
 
-/* Tarot Card Styling */
+/* Tarot Card Display */
 #cardResult {
-  margin-top: 20px;
   background: rgba(255, 255, 255, 0.08);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
   font-style: italic;
-  transform: translateY(10px);
   opacity: 0;
+  transform: translateY(10px);
   transition: all 0.6s ease;
 }
 
 #cardResult.show {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* Flip Card Structure */
+/* Flip Card Styles */
 .flip-card {
-  background: transparent;
-  width: 250px;
-  height: 150px;
+  width: 260px;
+  height: 160px;
   perspective: 1000px;
   margin-top: 30px;
 }
@@ -93,14 +103,10 @@ select:hover, button:hover {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  transition: transform 0.8s;
 }
 
-.flip-card:hover .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -109,14 +115,14 @@ select:hover, button:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
   backface-visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   padding: 15px;
+  font-size: 1.1rem;
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
 }
 
 .flip-card-front {
@@ -128,17 +134,15 @@ select:hover, button:hover {
   transform: rotateY(180deg);
   color: #fceaff;
 }
-body.light-mode {
-  background: linear-gradient(to bottom, #fff4fc, #e7d6ff);
-  color: #32073f;
-}
-body.light-mode .card,
+
+/* Light Mode Flip Adjustments */
 body.light-mode .flip-card-front,
 body.light-mode .flip-card-back {
-  background: rgba(255, 255, 255, 0.8);
-  color: #32073f;
+  background: rgba(255, 255, 255, 0.85);
+  color: #4b006e;
 }
 
+/* Toggle Button */
 #toggleMode {
   position: fixed;
   top: 10px;
@@ -151,4 +155,15 @@ body.light-mode .flip-card-back {
   cursor: pointer;
   z-index: 100;
   font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+#toggleMode:hover {
+  background: #790a97;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
