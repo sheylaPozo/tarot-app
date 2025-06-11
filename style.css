@@ -1,3 +1,4 @@
+
 /* Reset and Base */
 * {
   margin: 0;
@@ -26,6 +27,33 @@ body.light-mode {
 }
 
 /* Shared Card Styles */
+
+/* Tarot Card Display */
+.three-card-reading {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.three-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.three-card-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffc6ff;
+}
+
+body.light-mode .three-card-title {
+  color: #4b006e;
+}
+
 .card, .flip-card-front, .flip-card-back {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -91,46 +119,13 @@ select:hover, button:hover {
   transform: translateY(0);
 }
 
-#cardBackResult{
-  background: rgba(255, 255, 255, 0.08);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-  font-style: italic;
+.moon-message {
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.6s ease;
+  transition: opacity 1s ease-in;
 }
 
-#cardBackResult.show {
+.moon-message.revealed {
   opacity: 1;
-  transform: translateY(0);
-}
-
-/* Tarot Card Display */
-.three-card-reading {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.three-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.three-card-title {
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #ffc6ff;
-}
-
-body.light-mode .three-card-title {
-  color: #4b006e;
 }
 
 /* Flip Card Styles */
@@ -209,42 +204,22 @@ body.light-mode .flip-card-back {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.bg-toggle {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #444;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
 
-.bg-toggle:hover {
-  background: #666;
+/* body {
+  background-image: url("/assets/bg.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
-
-/* Fondo visual animado o imagen */
-body.bg-on {
-  background: linear-gradient(135deg, #1b2735 0%, #090a0f 100%);
-  background-size: 400% 400%;
-  animation: bgFlow 20s ease infinite;
-  color: #f0f0f0;
+  body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: -1;
 }
-
-/* Fondo apagado o fondo base */
-body.bg-off {
-  background-color: #ffffff;
-  color: #111;
-}
-
-@keyframes bgFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* 
 🔮 Sheyla's Background Custom Area:
 Aquí puedes cambiar el fondo como quieras, por ejemplo:
@@ -260,4 +235,6 @@ body.bg-on {
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('luna.gif');
   background-size: cover;
 }
+*/
+
 */
