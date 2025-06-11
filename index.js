@@ -1,31 +1,21 @@
-// Moon phase reading function
-// Moon phase reading function
-// 🌙 Handles moon phase reading messages
+// 🌙 Moon phase reading logic
 function moonPhaseReading() {
   const phase = document.getElementById("moonPhase").value;
   const message = document.getElementById("message");
 
-  switch (phase) {
-    case "new":
-      message.textContent = "🌑 Plant intentions for healing.";
-      break;
-    case "full":
-      message.textContent = "🌕 Release and manifest your goals and dreams.";
-      break;
-    case "waning":
-      message.textContent = "🌘 Let go of old energy and cut the cords that no longer serve you.";
-      break;
-    case "waxing":
-      message.textContent = "🌒 Grow your goals and create.";
-      break;
-    default:
-      message.textContent = "🧸✨ Please choose a moon phase to receive a message.";
-  }
+  const moonMessages = {
+    new: "🌑 Plant intentions for healing.",
+    full: "🌕 Release and manifest your goals and dreams.",
+    waning: "🌘 Let go of old energy and cut the cords that no longer serve you.",
+    waxing: "🌒 Grow your goals and create.",
+  };
+
+  message.textContent = moonMessages[phase] || "🧸✨ Please choose a moon phase to receive a message.";
 }
 
 // 🔮 Tarot card definitions
 const tarotCards = [
-  // Major Arcana (22 cards)
+  // Major Arcana
   { name: "The Fool", message: "A new journey begins — trust the path." },
   { name: "The Magician", message: "You have all the tools — act now." },
   { name: "The High Priestess", message: "Listen to your intuition." },
@@ -113,51 +103,36 @@ const tarotCards = [
   { name: "Queen of Pentacles", message: "Nurture what you value." },
   { name: "King of Pentacles", message: "Prosperity through leadership." },
 ];
-function drawCard() {
-  const randomIndex = Math.floor(Math.random() * tarotCards.length);
-  const card = tarotCards[randomIndex];
 
-  // Save to localStorage
+// 🔁 Draw a tarot card
+function drawCard() {
+  const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
   localStorage.setItem('lastCard', JSON.stringify(card));
 
-  // Show with flip effect
   const result = document.getElementById("cardResult");
   const container = document.getElementById("cardContainer");
 
   result.innerHTML = `🃏 <strong>${card.name}</strong><br>${card.message}`;
   container.classList.add("flipped");
 
-  // Reset flip on click
-  container.addEventListener('click', () => {
-    container.classList.toggle("flipped");
-  });
+  container.onclick = () => container.classList.toggle("flipped");
 }
 
-// Restore last card on load
-window.addEventListener('load', () => {
-  const lastCard = JSON.parse(localStorage.getItem('lastCard'));
-  if (lastCard) {
-    const result = document.getElementById("cardResult");
-    result.innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
-    document.getElementById("cardContainer").classList.add("flipped");
-  }
-});
-
-// 🌕 Fetch current moon phase using IPGeolocation API
+// 🌕 Fetch current moon phase
 async function fetchMoonPhase() {
-  const apiKey = '72847c6823ed44888d7b379b5797fcac'; // ✅ your real key
+  const apiKey = '72847c6823ed44888d7b379b5797fcac';
   const url = `https://api.ipgeolocation.io/astronomy?apiKey=${apiKey}`;
 
   try {
     const res = await fetch(url);
     const data = await res.json();
-    const rawPhase = data.moon_phase.toLowerCase();
+    const raw = data.moon_phase.toLowerCase();
 
     let phase = '';
-    if (rawPhase.includes('new')) phase = 'new';
-    else if (rawPhase.includes('full')) phase = 'full';
-    else if (rawPhase.includes('waning')) phase = 'waning';
-    else if (rawPhase.includes('waxing')) phase = 'waxing';
+    if (raw.includes('new')) phase = 'new';
+    else if (raw.includes('full')) phase = 'full';
+    else if (raw.includes('waning')) phase = 'waning';
+    else if (raw.includes('waxing')) phase = 'waxing';
 
     document.getElementById('moonPhase').value = phase;
     moonPhaseReading();
@@ -166,17 +141,27 @@ async function fetchMoonPhase() {
   }
 }
 
-// 🚀 Trigger moon phase fetch on page load
-window.addEventListener('load', fetchMoonPhase);
-document.getElementById("toggleMode").addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-});
-
-// Load saved mode
+// 🧙‍♀️ Load state on page load
 window.addEventListener('load', () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
+  // Theme
+  if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light-mode");
   }
+
+  // Last card
+  const lastCard = JSON.parse(localStorage.getItem('lastCard'));
+  if (lastCard) {
+    document.getElementById("cardResult").innerHTML = `🃏 <strong>${lastCard.name}</strong><br>${lastCard.message}`;
+    document.getElementById("cardContainer").classList.add("flipped");
+  }
+
+  // Moon
+  fetchMoonPhase();
+});
+
+// 🌓 Toggle theme
+document.getElementById("toggleMode").addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  const theme = document.body.classList.contains("light-mode") ? "light" : "dark";
+  localStorage.setItem("theme", theme);
 });
