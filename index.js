@@ -223,13 +223,13 @@ document.getElementById("bgToggleBtn").addEventListener("click", () => {
 function getSpreadPositions(type) {
   switch (type) {
     case 'mindBodySpirit':
-      return ['Mente', 'Cuerpo', 'Espíritu'];
+      return ['Mind', 'Body', 'Spirit'];
     case 'loveWorkAdvice':
-      return ['Amor', 'Trabajo', 'Consejo'];
+      return ['Love', 'Work', 'Advice'];
     case 'pastPresentFuture':
-      return ['Pasado', 'Presente', 'Futuro'];
+      return ['Past', 'Present', 'Future'];
     default:
-      return ['Carta 1', 'Carta 2', 'Carta 3'];
+      return ['Card 1', 'Card 2', 'Card 3'];
   }
 }
 
@@ -250,6 +250,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (last) {
     const reading = JSON.parse(last);
     // Puedes reconstruir la tirada aquí si quieres mostrarla
-    console.log("Última lectura guardada:", reading);
+    console.log("Last saved reading:", reading);
   }
 });
