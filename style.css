@@ -68,6 +68,15 @@ select:hover, button:hover {
 }
 
 /* Message Display */
+.moon-message {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.moon-message.revealed {
+  opacity: 1;
+}
+
 #message, #cardResult {
   margin-top: 25px;
   font-size: 1.2rem;

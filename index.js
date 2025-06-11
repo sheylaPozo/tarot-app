@@ -1,7 +1,7 @@
 // 🌙 Moon phase reading logic
 function moonPhaseReading() {
   const phase = document.getElementById("moonPhase").value;
-  const message = document.getElementById("message");
+  const moonMessage = document.getElementById("moonMessage");
 
   const moonMessages = {
     new: "🌑 Plant intentions for healing.",
@@ -10,8 +10,10 @@ function moonPhaseReading() {
     waxing: "🌒 Grow your goals and create.",
   };
 
-  message.textContent = moonMessages[phase] || "🧸✨ Please choose a moon phase to receive a message.";
+  moonMessage.textContent = moonMessages[phase] || "🧸✨ Please choose a moon phase to receive a message.";
 }
+moonMessage.classList.remove("revealed");
+setTimeout(() => moonMessage.classList.add("revealed"), 50);
 
 // 🔮 Tarot card definitions
 const tarotCards = [
